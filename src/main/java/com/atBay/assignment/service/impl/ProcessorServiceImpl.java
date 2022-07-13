@@ -52,7 +52,7 @@ public class ProcessorServiceImpl implements ProcessorService {
         updateScanStatus(scan.getScanId(), ScanStatus.COMPLETE);
         logger.info("Finish processing scan with scanId: " + scan.getScanId());
     }
-    private Scan getScanById(String scanId) {
+    public Scan getScanById(String scanId) {
        return processorRepository.getScanById(scanId);
     }
 }

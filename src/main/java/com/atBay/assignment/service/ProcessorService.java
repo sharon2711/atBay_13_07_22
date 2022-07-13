@@ -8,4 +8,5 @@ public interface ProcessorService {
      String create(ScanRequest scanRequest) throws Exception;
      void updateScanStatus(String scanId, ScanStatus scanStatus);
      void processScan(Scan scan);
+     Scan getScanById(String scanId);
 }

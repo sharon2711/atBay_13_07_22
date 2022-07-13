@@ -3,7 +3,7 @@ package com.atBay.assignment;
 
 import com.atBay.assignment.model.ScanStatus;
 import com.atBay.assignment.service.CacheService;
-import com.atBay.assignment.service.StatusService;
+import com.atBay.assignment.service.ProcessorService;
 import com.atBay.assignment.service.impl.StatusServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,6 +21,8 @@ import static org.mockito.ArgumentMatchers.any;
 public class ScanServiceTests {
     @Mock
     CacheService cacheService;
+    @Mock
+    ProcessorService processorService;
     @InjectMocks
     StatusServiceImpl statusServiceImpl;
 
@@ -38,9 +40,10 @@ public class ScanServiceTests {
     }
 
     @Test
-    void getStatusByScanIdWhenTheScanIdDoesntExist(){
+    void getStatusByScanIdWhenTheScanIdDoesNotExist(){
         String scanId = "12345";
         Mockito.when(cacheService.getStatus(any())).thenReturn(null);
+        Mockito.when(processorService.getScanById(any())).thenReturn(null);
         ScanStatus result = statusServiceImpl.getStatusByScanId(scanId);
         Assertions.assertEquals(result, ScanStatus.NOT_FOUND);
     }
